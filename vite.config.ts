@@ -1,12 +1,14 @@
-/// <reference types="vitest" />
-import { defineConfig } from 'vite';
-import { svelte } from '@sveltejs/vite-plugin-svelte';
+import { sveltekit } from '@sveltejs/kit/vite';
 
-export default defineConfig({
-    plugins: [svelte({ hot: !process.env.VITEST })],
-    test: {
-        globals: true,
-        environment: 'jsdom',
-        include: ['./tests/unit/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}']
-    }
-});
+/** @type {import('vite').UserConfig} */
+const config = {
+  plugins: [sveltekit()],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    include: ['./tests/unit/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    //exclude: ['**/node_modules/**', '**/.svelte-kit/**'],
+  },
+};
+
+export default config;
